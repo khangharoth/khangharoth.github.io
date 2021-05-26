@@ -1,4 +1,4 @@
-## TDD - The Unfulfilled promise: Part 1
+## TDD Part 1 : The Unfulfilled promise
 
 Why is TDD still mandated and not practised in most of the teams/organizations ground up?
 
