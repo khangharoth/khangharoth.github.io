@@ -21,12 +21,14 @@ So what are these problems?
   - Not able to run in Parallel: In lage projects with more than 20K+ tests, team will have to make investments to run the whole test suite in paralle.
   
 - **Randomness in tests**: Test fails randomly i.e on rerun the build passes and the team members gets into the habit of running the build again. Rather than fixing the underlying issues, randomness adds over time and the test suite becomes more like a coin toss, rather than a tool to give feedback.
+
 - **Long time to fix build failures**: Due to the randomness, team members are not sure if the build is failing because of a new change, or it's down to randomness and this leads to red builds for long before a team members take a look.
 
 - **Checkin on Red builds**: As red build becomes the norm so is check-in on already failing build and from there it's all downhill.
 
 - **Tests interfering with the refactoring**: Tests written after the code is written, typically exhibit this problem, where the coupling between the test and code is very high.
-  - 𝘐𝘯𝘢𝘥𝘷𝘦𝘳𝘵𝘦𝘯𝘵𝘭𝘺 𝘵𝘩𝘦 𝘵𝘦𝘴𝘵 𝘪𝘴 𝘵𝘦𝘴𝘵𝘪𝘯𝘨 𝘵𝘩𝘦 𝘪𝘮𝘱𝘭𝘦𝘮𝘦𝘯𝘵𝘢𝘵𝘪𝘰𝘯 𝘥𝘦𝘵𝘢𝘪𝘭 𝘢𝘯𝘥 𝘯𝘰𝘵 𝘵𝘩𝘦 𝘧𝘶𝘯𝘤𝘵𝘪𝘰𝘯𝘢𝘭𝘪𝘵𝘺 𝘢𝘯𝘥 𝘵𝘩𝘪𝘴 𝘭𝘦𝘢𝘥𝘴 𝘵𝘰 𝘵𝘪𝘨𝘩𝘵 𝘤𝘰𝘶𝘱𝘭𝘪𝘯𝘨.
-  - 𝘛𝘦𝘴𝘵𝘴, 𝘸𝘩𝘦𝘳𝘦 𝘮𝘰𝘤𝘬𝘪𝘯𝘨 𝘪𝘴 𝘩𝘦𝘢𝘷𝘪𝘭𝘺 𝘶𝘴𝘦𝘥, 𝘤𝘢𝘯 𝘣𝘦𝘤𝘰𝘮𝘦 𝘷𝘦𝘳𝘺 𝘣𝘳𝘪𝘵𝘵𝘭𝘦 𝘸𝘩𝘦𝘯 𝘥𝘦𝘷𝘦𝘭𝘰𝘱𝘦𝘳𝘴 𝘫𝘶𝘴𝘵 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘳𝘦𝘧𝘢𝘤𝘵𝘰𝘳 𝘵𝘩𝘦 𝘴𝘩𝘢𝘱𝘦 𝘰𝘧 𝘵𝘩𝘦 𝘤𝘰𝘥𝘦. 𝘈𝘭𝘭 𝘵𝘩𝘰𝘴𝘦 𝘷𝘦𝘳𝘪𝘧𝘪𝘤𝘢𝘵𝘪𝘰𝘯𝘴 𝘢𝘳𝘰𝘶𝘯𝘥 𝘩𝘰𝘸 𝘮𝘢𝘯𝘺 𝘵𝘪𝘮𝘦𝘴 𝘢 𝘨𝘪𝘷𝘦𝘯 𝘤𝘰𝘭𝘭𝘢𝘣𝘰𝘳𝘢𝘵𝘰𝘳 𝘪𝘴 𝘤𝘢𝘭𝘭𝘦𝘥 𝘪𝘯𝘧𝘭𝘰𝘸 𝘣𝘦𝘤𝘰𝘮𝘦 𝘷𝘦𝘳𝘺 𝘴𝘦𝘯𝘴𝘪𝘵𝘪𝘷𝘦 𝘵𝘰 𝘴𝘮𝘢𝘭𝘭 𝘤𝘩𝘢𝘯𝘨𝘦𝘴 𝘪𝘯 𝘵𝘩𝘦 𝘴𝘵𝘳𝘶𝘤𝘵𝘶𝘳𝘦 𝘰𝘧 𝘵𝘩𝘦 𝘤𝘰𝘥𝘦.
+  - Inadvertently the test is testing the implmentation and not the functionality and this leads to tight coupling between test and the underlying code.
+  - Tests, where mocking is heavily used, can become very brittle. Normal refactoring to change the shape of code can lead to test failures . 
+  
 - **Over Testing**: Testing is done in layers, where the outer layer test tries to test the whole internal implementation ex: DAO Test, Services Test, Functional Test & then End to End Test. This results in a common internal codebase (DAO layer) being covered by many-many tests and hence any change there can result in lots of failing tests. Ideally, any part of code should be covered by two tests, one is unit and another End-to-End and hence any change should only result in two failing tests.
 - **Individuals not committed to TDD philosophy**: TDD is a team sport and hence everyone in the team needs to adhere to the philosophy of writing tests first and then continuous refactoring. Even one member, not following these guidelines can create the above-mentioned problems for the entire team.
